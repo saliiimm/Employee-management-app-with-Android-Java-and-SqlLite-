@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".AddEmployeeActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4E89AF"
+            android:orientation="horizontal"
+            android:paddingStart="10dp">
+
+            <ImageView
+                android:id="@+id/image_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="Back"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/text_employee_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Add employee"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <!-- Icon to validate content -->
+            <ImageView
+                android:id="@+id/image_validate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="Validate"
+                android:padding="8dp"
+                android:src="@drawable/ic_check" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/image_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/rounded_button_background"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Profile Picture" />
+
+            <Button
+                android:id="@+id/button_choose_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Image"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:textSize="17sp"
+                android:text="First Name:" />
+
+            <EditText
+                android:id="@+id/edittext_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:padding="15sp"
+                android:hint="Enter the first name"
+                android:background="@drawable/edittext_border" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:textSize="17sp"
+                android:text="Last Name:" />
+
+            <EditText
+                android:id="@+id/edittext_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:padding="15sp"
+                android:hint="Enter the last name"
+                android:background="@drawable/edittext_border" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:textSize="17sp"
+                android:text="Phone Number:" />
+
+            <EditText
+                android:id="@+id/edittext_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter the phone number"
+                android:layout_marginHorizontal="20sp"
+                android:padding="15sp"
+                android:inputType="phone"
+                android:background="@drawable/edittext_border" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:textSize="17sp"
+                android:text="Email:" />
+
+            <EditText
+                android:id="@+id/edittext_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter the email"
+                android:layout_marginHorizontal="20sp"
+                android:padding="15sp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/edittext_border" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:textSize="17sp"
+                android:text="Job Title:" />
+
+            <EditText
+                android:id="@+id/edittext_job"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:padding="15sp"
+                android:hint="Enter the job title"
+                android:background="@drawable/edittext_border" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:textSize="17sp"
+                android:text="Residence:" />
+
+        <EditText
+            android:id="@+id/edittext_residence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter the residence"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginBottom="120sp"
+            android:padding="15sp"
+            android:background="@drawable/edittext_border" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
