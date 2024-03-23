@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddEmployeeActivity extends AppCompatActivity {
 
     private EditText editTextFirstName, editTextLastName, editTextPhoneNumber, editTextEmail, editTextResidence, editTextJob;
-    private ImageView imageViewValidate;
+    private ImageView imageViewValidate, imageViewBack;
 
     private DatabaseHelper databaseHelper;
 
@@ -26,8 +26,15 @@ public class AddEmployeeActivity extends AppCompatActivity {
         editTextResidence = findViewById(R.id.edittext_residence);
         editTextJob = findViewById(R.id.edittext_job);
         imageViewValidate = findViewById(R.id.image_validate);
+        imageViewBack= findViewById(R.id.image_back);
 
         databaseHelper = new DatabaseHelper(this);
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         imageViewValidate.setOnClickListener(new View.OnClickListener() {
             @Override
