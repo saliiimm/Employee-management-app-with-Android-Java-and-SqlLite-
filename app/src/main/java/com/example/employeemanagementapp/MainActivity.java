@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             Cursor cursor = dbHelper.getAllEmployees();
             if (cursor != null && cursor.moveToFirst()) {
                 do {
+                    // Retrieve employee information from the cursor
                     @SuppressLint("Range") String firstName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME));
                     @SuppressLint("Range") String lastName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME));
                     @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE_NUMBER));
@@ -52,23 +53,16 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("Range") String jobTitle = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_JOB));
                     @SuppressLint("Range") String residence = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_RESIDENCE));
 
-                    Log.d("Employee Details", "First Name: " + firstName);
-                    Log.d("Employee Details", "Last Name: " + lastName);
-                    Log.d("Employee Details", "Phone Number: " + phoneNumber);
-                    Log.d("Employee Details", "Email: " + email);
-                    Log.d("Employee Details", "Job Title: " + jobTitle);
-                    Log.d("Employee Details", "Residence: " + residence);
+                    View employeeView = getLayoutInflater().inflate(R.layout.employee_item, null);
+                    TextView firstLastNameTextView = employeeView.findViewById(R.id.first_last_name);
+                    TextView jobTitleTextView = employeeView.findViewById(R.id.job_title);
 
-                    TextView textView = new TextView(this);
-                    textView.setText("First Name: " + firstName + "\n" +
-                            "Last Name: " + lastName + "\n" +
-                            "Phone Number: " + phoneNumber + "\n" +
-                            "Email: " + email + "\n" +
-                            "Job Title: " + jobTitle + "\n" +
-                            "Residence: " + residence + "\n");
+                    firstLastNameTextView.setText(firstName + " " + lastName);
+                    jobTitleTextView.setText( jobTitle);
 
-                    textView.setTextColor(Color.RED);
-                    employeeLayout.addView(textView);
+
+                    employeeLayout.addView(employeeView);
+
                 } while (cursor.moveToNext());
 
                 cursor.close();
@@ -79,4 +73,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Employee Details", "Error accessing database: " + e.getMessage());
         }
     }
+
+
 }
