@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             Cursor cursor = dbHelper.getAllEmployees();
             if (cursor != null && cursor.moveToFirst()) {
                 do {
-                    // Retrieve employee information from the cursor
+
                     @SuppressLint("Range") String firstName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME));
                     @SuppressLint("Range") String lastName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME));
                     @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE_NUMBER));
