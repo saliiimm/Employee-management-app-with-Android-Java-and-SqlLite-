@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listview);
         displayEmployees(listView);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Handle item click if needed
-            }
-        });
 
         findViewById(R.id.button_add_employee).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("Range") String firstName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME));
                     @SuppressLint("Range") String lastName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME));
                     @SuppressLint("Range") String jobTitle = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_JOB));
+                    @SuppressLint("Range") String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL));
+                    @SuppressLint("Range") String residence = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_RESIDENCE));
+                    @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE_NUMBER));
                     int sharedImageResource = R.drawable.rounded_button_background;
 
                     Employee employee = new Employee(firstName, lastName, jobTitle, sharedImageResource);
