@@ -84,4 +84,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, COLUMN_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
+    public Cursor getEmployeeById(long employeeId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                COLUMN_FIRST_NAME,
+                COLUMN_LAST_NAME,
+                COLUMN_PHONE_NUMBER,
+                COLUMN_EMAIL,
+                COLUMN_JOB,
+                COLUMN_RESIDENCE
+        };
+        String selection = COLUMN_ID + "=?";
+        String[] selectionArgs = {String.valueOf(employeeId)};
+        return db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+    }
+
 }

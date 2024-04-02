@@ -24,11 +24,8 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_layout, parent, false);
         }
 
-        ImageView imageView = convertView.findViewById(R.id.imageprofile);
-        TextView firstLastNameTextView = convertView.findViewById(R.id.first_last_name);
-        TextView jobTitleTextView = convertView.findViewById(R.id.job_title);
-
-        imageView.setImageResource(employee.getImageResource());
+        TextView firstLastNameTextView = convertView.findViewById(R.id.text_name);
+        TextView jobTitleTextView = convertView.findViewById(R.id.text_job);
         firstLastNameTextView.setText(employee.getFirstName() + " " + employee.getLastName());
         jobTitleTextView.setText(employee.getJobTitle());
 
