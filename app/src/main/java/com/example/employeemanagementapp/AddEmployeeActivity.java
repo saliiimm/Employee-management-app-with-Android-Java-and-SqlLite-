@@ -1,5 +1,6 @@
 package com.example.employeemanagementapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -61,6 +62,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
         if (result != -1) {
             Toast.makeText(this, "Employee added successfully", Toast.LENGTH_SHORT).show();
+            // Set result to indicate success
+            setResult(RESULT_OK);
             finish();
         } else {
             Toast.makeText(this, "Failed to add employee", Toast.LENGTH_SHORT).show();
