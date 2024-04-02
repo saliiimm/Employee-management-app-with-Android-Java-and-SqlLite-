@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,23 +42,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             Cursor cursor = dbHelper.getAllEmployees();
             if (cursor != null && cursor.moveToFirst()) {
-                ArrayList<Employee> employeeList = new ArrayList<>();
-                do {
-                    @SuppressLint("Range") String firstName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME));
-                    @SuppressLint("Range") String lastName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME));
-                    @SuppressLint("Range") String jobTitle = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_JOB));
-                    @SuppressLint("Range") String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL));
-                    @SuppressLint("Range") String residence = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_RESIDENCE));
-                    @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PHONE_NUMBER));
-                    int sharedImageResource = R.drawable.rounded_button_background;
-
-                    Employee employee = new Employee(firstName, lastName, jobTitle, sharedImageResource);
-                    employeeList.add(employee);
-                } while (cursor.moveToNext());
-
-                cursor.close();
-
-                EmployeeListAdapter adapter = new EmployeeListAdapter(this, employeeList);
+                SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+                        this,
+                        android.R.layout.simple_list_item_2,
+                        cursor,
+                        new String[]{DatabaseHelper.COLUMN_FIRST_NAME, DatabaseHelper.COLUMN_LAST_NAME},
+                        new int[]{android.R.id.text1, android.R.id.text2},
+                        0);
                 listView.setAdapter(adapter);
             } else {
                 Log.d("Employee Details", "No employees found in the database.");
@@ -66,4 +57,5 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Employee Details", "Error accessing database: " + e.getMessage());
         }
     }
+
 }
