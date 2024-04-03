@@ -32,4 +32,3 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         return convertView;
     }
 }
-

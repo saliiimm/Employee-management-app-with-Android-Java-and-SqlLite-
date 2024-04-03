@@ -23,12 +23,27 @@
             android:text="List Of Employees"
             android:textSize="20dp"
             android:gravity="center_vertical"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="search employee..."
+            android:id="@+id/search_input"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="end">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/search"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="search Icon"
+                android:src="@drawable/ic_search"/>
+
 
             <ImageView
                 android:id="@+id/image_menu"
@@ -91,4 +106,3 @@
         android:background="@drawable/rounded_button_background" />
 
 </LinearLayout>
-

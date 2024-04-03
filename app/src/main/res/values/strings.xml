@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EmployeeManagementApp</string>
+    <string name="employee_image">Employee Image</string>
+
 </resources>

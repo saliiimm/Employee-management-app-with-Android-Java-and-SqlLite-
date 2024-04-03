@@ -41,7 +41,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
-            <!-- Icon to validate content -->
             <ImageView
                 android:id="@+id/image_validate"
                 android:layout_width="wrap_content"
@@ -166,17 +165,17 @@
                 android:textSize="17sp"
                 android:text="Residence:" />
 
-        <EditText
-            android:id="@+id/edittext_residence"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter the residence"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginBottom="120sp"
-            android:padding="15sp"
-            android:background="@drawable/edittext_border" />
+            <EditText
+                android:id="@+id/edittext_residence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter the residence"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginBottom="120sp"
+                android:padding="15sp"
+                android:background="@drawable/edittext_border" />
 
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

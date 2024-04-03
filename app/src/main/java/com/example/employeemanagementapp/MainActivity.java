@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private SimpleCursorAdapter adapter;
+    private EditText searchInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +32,25 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listview);
         displayEmployees(listView);
 
+        searchInput = findViewById(R.id.search_input);
+
+        ImageView searchIcon = findViewById(R.id.search);
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleSearchInputVisibility();
+            }
+        });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) parent.getItemAtPosition(position);
 
-                // Extract employee ID from the cursor
                 @SuppressLint("Range") long employeeId = cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
 
-                // Create an intent to start the EmployeeDetailsActivity
                 Intent intent = new Intent(MainActivity.this, EmployeeDetails.class);
-                // Pass employee ID as an extra to the intent
+
                 intent.putExtra("employeeId", employeeId);
                 startActivity(intent);
             }
@@ -75,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.e("Employee Details", "Error accessing database: " + e.getMessage());
+        }
+    }
+
+    private void toggleSearchInputVisibility() {
+        if (searchInput.getVisibility() == View.VISIBLE) {
+            searchInput.setVisibility(View.GONE);
+        } else {
+            searchInput.setVisibility(View.VISIBLE);
         }
     }
 

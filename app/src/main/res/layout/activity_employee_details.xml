@@ -59,6 +59,15 @@
                 android:contentDescription="supprimer"
                 android:padding="5dp"
                 android:src="@drawable/ic_supprimer" />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/validate_modif"
+                android:contentDescription="validate modif"
+                android:padding="5dp"
+                android:src="@drawable/ic_check"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +149,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:layout_marginTop="20sp"
-
                 android:background="@drawable/edittext_border"
                 android:hint="residence"
                 android:padding="15sp" />
