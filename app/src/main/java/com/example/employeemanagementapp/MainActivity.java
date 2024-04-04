@@ -61,15 +61,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) parent.getItemAtPosition(position);
-
                 @SuppressLint("Range") long employeeId = cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
-
-                Intent intent = new Intent(MainActivity.this, EmployeeDetails.class);
-
-                intent.putExtra("employeeId", employeeId);
-                startActivity(intent);
+                showEmployeeDetails(employeeId);
             }
         });
+
 
         findViewById(R.id.button_add_employee).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,9 +131,23 @@ public class MainActivity extends AppCompatActivity {
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
             itemView.setLayoutParams(params);
 
+            final long employeeId = cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showEmployeeDetails(employeeId);
+                }
+            });
+
             gridLayout.addView(itemView);
             cursor.moveToNext();
         }
+    }
+
+    private void showEmployeeDetails(long employeeId) {
+        Intent intent = new Intent(MainActivity.this, EmployeeDetails.class);
+        intent.putExtra("employeeId", employeeId);
+        startActivity(intent);
     }
 
     private void toggleSearchInputVisibility() {
