@@ -56,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
                 toggleListViewGridLayout();
             }
         });
+        ImageView listIcon = findViewById(R.id.list);
+        listIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleListViewGridLayout();
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -162,11 +169,17 @@ public class MainActivity extends AppCompatActivity {
         if (listView.getVisibility() == View.VISIBLE) {
             listView.setVisibility(View.GONE);
             gridLayout.setVisibility(View.VISIBLE);
+            findViewById(R.id.list).setVisibility(View.VISIBLE);
+            findViewById(R.id.image_menu).setVisibility(View.GONE);
         } else {
             listView.setVisibility(View.VISIBLE);
             gridLayout.setVisibility(View.GONE);
+            findViewById(R.id.list).setVisibility(View.GONE);
+            findViewById(R.id.image_menu).setVisibility(View.VISIBLE);
         }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
