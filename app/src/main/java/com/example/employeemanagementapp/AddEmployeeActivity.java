@@ -1,12 +1,14 @@
 package com.example.employeemanagementapp;
-
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.SimpleCursorAdapter;
+
 
 public class AddEmployeeActivity extends AppCompatActivity {
 
@@ -14,6 +16,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
     private ImageView imageViewValidate, imageViewBack;
 
     private DatabaseHelper databaseHelper;
+    private SimpleCursorAdapter listAdapter;
+    private EmployeeGridAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +67,24 @@ public class AddEmployeeActivity extends AppCompatActivity {
         if (result != -1) {
             Toast.makeText(this, "Employee added successfully", Toast.LENGTH_SHORT).show();
 
+            updateAdapters();
+
             setResult(RESULT_OK);
             finish();
         } else {
             Toast.makeText(this, "Failed to add employee", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void updateAdapters() {
+        Cursor cursor = databaseHelper.getAllEmployees();
+        if (cursor != null && cursor.moveToFirst()) {
+            if (listAdapter != null) {
+                listAdapter.changeCursor(cursor);
+            }
+            if (gridAdapter != null) {
+                gridAdapter.changeCursor(cursor);
+            }
         }
     }
 }
