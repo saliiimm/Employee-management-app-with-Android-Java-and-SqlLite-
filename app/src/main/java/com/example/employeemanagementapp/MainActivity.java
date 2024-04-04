@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
+
         ListView listView = findViewById(R.id.listview);
         displayEmployees(listView);
 
@@ -74,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                             this,
                             R.layout.list_item_layout,
                             cursor,
-                            new String[]{DatabaseHelper.COLUMN_FIRST_NAME, DatabaseHelper.COLUMN_PHONE_NUMBER, DatabaseHelper.COLUMN_EMAIL, DatabaseHelper.COLUMN_JOB, DatabaseHelper.COLUMN_RESIDENCE},
-                            new int[]{R.id.text_name, R.id.text_phone, R.id.text_email, R.id.text_job, R.id.text_residence},
+                            new String[]{DatabaseHelper.COLUMN_FIRST_NAME, DatabaseHelper.COLUMN_LAST_NAME,  DatabaseHelper.COLUMN_JOB},
+                            new int[]{R.id.text_name,R.id.text_lastname, R.id.text_job},
                             0);
                     listView.setAdapter(adapter);
                 } else {
@@ -105,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
             displayEmployees(listView);
         }
     }
+
 }
