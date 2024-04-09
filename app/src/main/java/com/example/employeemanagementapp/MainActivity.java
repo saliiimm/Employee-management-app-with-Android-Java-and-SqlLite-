@@ -3,11 +3,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.text.TextWatcher;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -41,13 +43,25 @@ public class MainActivity extends AppCompatActivity {
 
         searchInput = findViewById(R.id.search_input);
 
-        ImageView searchIcon = findViewById(R.id.search);
-        searchIcon.setOnClickListener(new View.OnClickListener() {
+        searchInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                toggleSearchInputVisibility();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString().trim();
+                filterEmployeeList(query); // Filter employee list based on the entered text
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+
         });
+
 
         ImageView menuIcon = findViewById(R.id.image_menu);
         menuIcon.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayEmployees();
+    }
     private void displayEmployees() {
         try {
             Cursor cursor = dbHelper.getAllEmployees();
@@ -114,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.e("Employee Details", "Error accessing database: " + e.getMessage());
+        }
+    }
+
+    private void filterEmployeeList(String query) {
+        Cursor cursor = dbHelper.getAllEmployeesFiltered(query);
+        if (cursor != null) {
+            listAdapter.changeCursor(cursor);
         }
     }
 
@@ -157,13 +184,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void toggleSearchInputVisibility() {
-        if (searchInput.getVisibility() == View.VISIBLE) {
-            searchInput.setVisibility(View.GONE);
-        } else {
-            searchInput.setVisibility(View.VISIBLE);
-        }
-    }
+
 
     private void toggleListViewGridLayout() {
         if (listView.getVisibility() == View.VISIBLE) {
@@ -188,4 +209,6 @@ public class MainActivity extends AppCompatActivity {
             displayEmployees();
         }
     }
+
+
 }

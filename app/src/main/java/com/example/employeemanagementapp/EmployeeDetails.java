@@ -1,11 +1,17 @@
 package com.example.employeemanagementapp;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EmployeeDetails extends AppCompatActivity {
@@ -107,4 +113,58 @@ public class EmployeeDetails extends AppCompatActivity {
     public void goBack(View view) {
         finish();
     }
+
+    public void SendMail(View view) {
+        TextView emailTextView = findViewById(R.id.edittext_email);
+        String recipientEmail = emailTextView.getText().toString();
+
+        Log.d("Recipient Email", recipientEmail);
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:" + Uri.encode(recipientEmail)));
+            intent.putExtra(Intent.EXTRA_EMAIL,new String[] {recipientEmail});
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }  else {
+            Toast.makeText(getApplicationContext(), "No email app found. Please install an email app.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void MakeCall(View view ) {
+        TextView phonetextView = findViewById(R.id.edittext_phone_number);
+        String recipientPhone = phonetextView.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + recipientPhone));
+        startActivity(intent);
+    }
+
+    public void MakeSMS(View view ) {
+        TextView phonetextView = findViewById(R.id.edittext_phone_number);
+        String recipientPhone = phonetextView.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("sms:" + recipientPhone));
+        startActivity(intent);
+    }
+
+    public void deleteEmployee(View view) {
+        long employeeId = getIntent().getLongExtra("employeeId", -1);
+        if (employeeId != -1) {
+            int rowsDeleted = dbHelper.deleteEmployee(employeeId);
+            if (rowsDeleted > 0) {
+                Toast.makeText(this, "Employee deleted successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the back stack
+                startActivity(intent);// Close the activity after successful deletion
+            } else {
+                Toast.makeText(this, "Failed to delete employee", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Log.d("Delete Employee", "Invalid employee ID");
+        }
+    }
+
+
+
+
+
 }

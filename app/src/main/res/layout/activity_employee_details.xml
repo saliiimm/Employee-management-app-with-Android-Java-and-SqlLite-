@@ -52,6 +52,7 @@
                 android:src="@drawable/ic_modifier"
                 android:onClick="toggleEditMode" />
             <ImageView
+                android:onClick="deleteEmployee"
                 android:id="@+id/supp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -161,6 +162,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
+                    android:onClick="MakeCall"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rounded_phone"
@@ -169,6 +171,7 @@
                     android:src="@drawable/ic_telephone" />
 
                 <ImageButton
+                    android:onClick="MakeSMS"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rounded_sms"
@@ -177,6 +180,7 @@
                     android:src="@drawable/ic_sms" />
 
                 <ImageButton
+                    android:onClick="SendMail"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="10sp"

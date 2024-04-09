@@ -99,4 +99,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
     }
 
+    public Cursor getAllEmployeesFiltered(String query) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_FIRST_NAME,
+                COLUMN_LAST_NAME,
+                COLUMN_IMAGE,
+                COLUMN_PHONE_NUMBER,
+                COLUMN_EMAIL,
+                COLUMN_RESIDENCE,
+                COLUMN_JOB
+        };
+        String selection = COLUMN_FIRST_NAME + " LIKE ? OR " +
+                COLUMN_LAST_NAME + " LIKE ? " ;
+        String[] selectionArgs = new String[]{
+                "%" + query + "%", // search for first name
+                "%" + query + "%",
+        };
+        return db.query(
+                TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+    }
+
+
 }
