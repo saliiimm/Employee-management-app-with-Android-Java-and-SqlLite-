@@ -66,12 +66,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.query(TABLE_NAME, null, null, null, null, null, null);
     }
 
-    public int updateEmployee(long id, String firstName, String lastName, String image, String phoneNumber, String email, String residence, String job) {
+    public int updateEmployee(long id, String firstName, String lastName, byte[] image, String phoneNumber, String email, String residence, String job) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FIRST_NAME, firstName);
         values.put(COLUMN_LAST_NAME, lastName);
-        values.put(COLUMN_IMAGE, image);
+        values.put(COLUMN_IMAGE, image); // Modifier pour accepter un tableau de bytes pour l'image
         values.put(COLUMN_PHONE_NUMBER, phoneNumber);
         values.put(COLUMN_EMAIL, email);
         values.put(COLUMN_RESIDENCE, residence);
@@ -79,6 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_NAME, values, COLUMN_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
+
 
     public int deleteEmployee(long id) {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,11 +18,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.ByteArrayOutputStream;
+
 public class EmployeeDetails extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private boolean isEditMode = false;
-
+    private ImageView  profileImageView;
 
 
     @Override
@@ -64,7 +67,8 @@ public class EmployeeDetails extends AppCompatActivity {
                 setEditTextReadonly((EditText) residenceTextView);
 
                 // Inside onCreate() method after populating other fields
-                ImageView profileImageView = findViewById(R.id.image_profile);
+            profileImageView = findViewById(R.id.image_profile2);
+                profileImageView.setImageResource(R.drawable.ic_launcher_background);
 
                 if (employeeId != -1) {
                     byte[] imageData = dbHelper.getEmployeeProfileImage(employeeId);
@@ -125,7 +129,47 @@ public class EmployeeDetails extends AppCompatActivity {
         editText.setFocusableInTouchMode(true);
         editText.setTextColor(getResources().getColor(android.R.color.black));
     }
+    public byte[] convertImageToByteArray() {
+        Bitmap bmp = ((BitmapDrawable) profileImageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+    public void openCamera2(View view) {
+        Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePicture, 0);
+    }
+    public void openGallery2(View view) {
+        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(pickPhoto, 1);
+    }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 0:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    if (bundle != null) {
+                        Bitmap bmp = (Bitmap) bundle.get("data");
+                        if (bmp != null) {
+                            Bitmap resized = Bitmap.createScaledBitmap(bmp, 100, 100, true);
+                            profileImageView.setImageBitmap(resized);
+                        }
+                    }
+                }
+                break;
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImage = data.getData();
+                    if (selectedImage != null) {
+                        profileImageView.setImageURI(selectedImage);
+                    }
+                }
+                break;
+        }
+    }
     public void goBack(View view) {
         finish();
     }
@@ -176,6 +220,42 @@ public class EmployeeDetails extends AppCompatActivity {
             }
         } else {
             Log.d("Delete Employee", "Invalid employee ID");
+        }
+    }
+    public void updateEmployee(View view) {
+        long employeeId = getIntent().getLongExtra("employeeId", -1);
+
+        if (employeeId != -1) {
+            EditText firstNameEditText = findViewById(R.id.edittext_first_name);
+            EditText lastNameEditText = findViewById(R.id.edittext_last_name);
+            EditText phoneNumberEditText = findViewById(R.id.edittext_phone_number);
+            EditText emailEditText = findViewById(R.id.edittext_email);
+            EditText jobEditText = findViewById(R.id.edittext_job);
+            EditText residenceEditText = findViewById(R.id.edittext_residence);
+
+            String firstName = firstNameEditText.getText().toString();
+            String lastName = lastNameEditText.getText().toString();
+            String phoneNumber = phoneNumberEditText.getText().toString();
+            String email = emailEditText.getText().toString();
+            String job = jobEditText.getText().toString();
+            String residence = residenceEditText.getText().toString();
+            byte[] imageBytes = convertImageToByteArray();
+            if (TextUtils.isEmpty(firstName) || TextUtils.isEmpty(lastName) ||
+                    TextUtils.isEmpty(phoneNumber) || TextUtils.isEmpty(email) ||
+                    TextUtils.isEmpty(job) || TextUtils.isEmpty(residence)) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Mettez à jour l'employé dans la base de données
+            int rowsAffected = dbHelper.updateEmployee(employeeId, firstName, lastName, imageBytes, phoneNumber, email, job, residence);
+            if (rowsAffected > 0) {
+                Toast.makeText(this, "Employee updated successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Failed to update employee", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Log.d("Update Employee", "Invalid employee ID");
         }
     }
 
