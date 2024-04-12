@@ -2,6 +2,8 @@ package com.example.employeemanagementapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +62,19 @@ public class EmployeeDetails extends AppCompatActivity {
                 setEditTextReadonly((EditText) emailTextView);
                 setEditTextReadonly((EditText) jobTitleTextView);
                 setEditTextReadonly((EditText) residenceTextView);
+
+                // Inside onCreate() method after populating other fields
+                ImageView profileImageView = findViewById(R.id.image_profile);
+
+                if (employeeId != -1) {
+                    byte[] imageData = dbHelper.getEmployeeProfileImage(employeeId);
+                    if (imageData != null) {
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                        profileImageView.setImageBitmap(bitmap);
+                    } else {
+                        profileImageView.setImageResource(R.drawable.rounded_button_background); // Default image if no image found
+                    }
+                }
 
                 cursor.close();
             } else {

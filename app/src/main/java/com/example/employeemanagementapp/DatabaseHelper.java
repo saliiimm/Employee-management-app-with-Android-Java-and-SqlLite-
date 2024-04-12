@@ -1,5 +1,6 @@
 package com.example.employeemanagementapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -127,6 +128,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null
         );
     }
+
+    @SuppressLint("Range")
+    public byte[] getEmployeeProfileImage(long employeeId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        byte[] imageData = null;
+
+        Cursor cursor = db.query(
+                TABLE_NAME,
+                new String[]{COLUMN_IMAGE},
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(employeeId)},
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            imageData = cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE));
+            cursor.close();
+        }
+
+        return imageData;
+    }
+
 
 
 }
