@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingTop="15dp"
             android:gravity="end">
 
 
@@ -39,20 +40,25 @@
                 android:id="@+id/image_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Menu Icon"
                 android:src="@drawable/ic_menu"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Menu Icon"
                 android:src="@drawable/ic_list"
                 android:id="@+id/list"
                 android:visibility="gone" />
-
+            <ImageView
+                android:id="@+id/settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:onClick="GoToSettings"
+                android:contentDescription="Menu Icon"
+                android:src="@drawable/settings"/>
 
         </LinearLayout>
 

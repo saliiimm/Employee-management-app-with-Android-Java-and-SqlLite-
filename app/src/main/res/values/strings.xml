@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">EmployeeManagementApp</string>
     <string name="employee_image">Employee Image</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="params_header">Settings</string>
+
+    <!-- Messages Preferences -->
+    <string name="language_title">Langue</string>
+
+    <!-- Sync Preferences -->
+    <string name="theme_title">Change Theme</string>
+    <string name="theme_on">Light Mode On
+    </string>
+    <string name="theme_off">Dark Mode On</string>
 
 </resources>

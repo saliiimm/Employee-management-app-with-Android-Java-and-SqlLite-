@@ -200,6 +200,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+   public void GoToSettings(View view){
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override
