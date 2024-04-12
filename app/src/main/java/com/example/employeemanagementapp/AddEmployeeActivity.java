@@ -1,23 +1,25 @@
 package com.example.employeemanagementapp;
+
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.SimpleCursorAdapter;
 
+import java.io.ByteArrayOutputStream;
 
 public class AddEmployeeActivity extends AppCompatActivity {
 
     private EditText editTextFirstName, editTextLastName, editTextPhoneNumber, editTextEmail, editTextResidence, editTextJob;
-    private ImageView imageViewValidate, imageViewBack;
+    private ImageView imageViewValidate, imageViewBack, imageView;
 
     private DatabaseHelper databaseHelper;
-    private SimpleCursorAdapter listAdapter;
-    private EmployeeGridAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +33,12 @@ public class AddEmployeeActivity extends AppCompatActivity {
         editTextResidence = findViewById(R.id.edittext_residence);
         editTextJob = findViewById(R.id.edittext_job);
         imageViewValidate = findViewById(R.id.image_validate);
-        imageViewBack= findViewById(R.id.image_back);
+        imageViewBack = findViewById(R.id.image_back);
+        imageView = findViewById(R.id.image_profile);
+        imageView.setImageResource(R.drawable.ic_launcher_background);
 
         databaseHelper = new DatabaseHelper(this);
+
         imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +54,50 @@ public class AddEmployeeActivity extends AppCompatActivity {
         });
     }
 
+    public byte[] convertImageToByteArray() {
+        Bitmap bmp = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    public void openCamera(View view) {
+        Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePicture, 0);
+    }
+
+    public void openGallery(View view) {
+        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(pickPhoto, 1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 0:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    if (bundle != null) {
+                        Bitmap bmp = (Bitmap) bundle.get("data");
+                        if (bmp != null) {
+                            Bitmap resized = Bitmap.createScaledBitmap(bmp, 100, 100, true);
+                            imageView.setImageBitmap(resized);
+                        }
+                    }
+                }
+                break;
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImage = data.getData();
+                    if (selectedImage != null) {
+                        imageView.setImageURI(selectedImage);
+                    }
+                }
+                break;
+        }
+    }
+
     private void addEmployee() {
         String firstName = editTextFirstName.getText().toString().trim();
         String lastName = editTextLastName.getText().toString().trim();
@@ -56,35 +105,20 @@ public class AddEmployeeActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString().trim();
         String residence = editTextResidence.getText().toString().trim();
         String job = editTextJob.getText().toString().trim();
+        byte[] imageBytes = convertImageToByteArray();
 
         if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || residence.isEmpty() || job.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        long result = databaseHelper.insertEmployee(firstName, lastName, null, phoneNumber, email, residence, job);
+        long result = databaseHelper.insertEmployee(firstName, lastName, imageBytes, phoneNumber, email, residence, job);
 
         if (result != -1) {
             Toast.makeText(this, "Employee added successfully", Toast.LENGTH_SHORT).show();
-
-            updateAdapters();
-
-            setResult(RESULT_OK);
             finish();
         } else {
             Toast.makeText(this, "Failed to add employee", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void updateAdapters() {
-        Cursor cursor = databaseHelper.getAllEmployees();
-        if (cursor != null && cursor.moveToFirst()) {
-            if (listAdapter != null) {
-                listAdapter.changeCursor(cursor);
-            }
-            if (gridAdapter != null) {
-                gridAdapter.changeCursor(cursor);
-            }
         }
     }
 }

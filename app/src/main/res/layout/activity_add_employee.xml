@@ -68,9 +68,18 @@
                 android:id="@+id/button_choose_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose Image"
+                android:text="galery"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:onClick="openGallery"/>
+            <Button
+                android:id="@+id/button_choose_image2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="camera"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:onClick="openCamera"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

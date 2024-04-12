@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COLUMN_FIRST_NAME + " TEXT," +
                     COLUMN_LAST_NAME + " TEXT," +
-                    COLUMN_IMAGE + " TEXT," +
+                    COLUMN_IMAGE + " BLOB," +
                     COLUMN_PHONE_NUMBER + " TEXT," +
                     COLUMN_JOB + " TEXT," +
                     COLUMN_EMAIL + " TEXT," +
@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertEmployee(String firstName, String lastName, String image, String phoneNumber, String email, String residence, String job) {
+    public long insertEmployee(String firstName, String lastName, byte[] image, String phoneNumber, String email, String residence, String job) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FIRST_NAME, firstName);
