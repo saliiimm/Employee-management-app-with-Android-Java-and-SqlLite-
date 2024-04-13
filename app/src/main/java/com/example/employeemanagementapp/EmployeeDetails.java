@@ -1,6 +1,8 @@
 package com.example.employeemanagementapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Locale;
 
 public class EmployeeDetails extends AppCompatActivity {
 
@@ -30,6 +34,7 @@ public class EmployeeDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyLanguage();
         setContentView(R.layout.activity_employee_details);
 
         dbHelper = new DatabaseHelper(this);
@@ -260,6 +265,37 @@ public class EmployeeDetails extends AppCompatActivity {
     }
 
 
+    private void applyLanguage() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String selectedLanguage = preferences.getString("selected_language", "");
+        Log.d("selected language",selectedLanguage);
+        Locale newLocale;
+        if (selectedLanguage.equals("العربية")) {
+            newLocale = new Locale("ar");
+            Locale.setDefault(newLocale);
+            Configuration config = new Configuration();
+            config.setLocale(newLocale);
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        } else {
+            newLocale = Locale.ENGLISH;
+            Locale.setDefault(newLocale);
+            Configuration config = new Configuration();
+            config.setLocale(newLocale);
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Handle configuration changes here, if needed
+        // This method will be called automatically when the language configuration is changed
+    }
 
 
 

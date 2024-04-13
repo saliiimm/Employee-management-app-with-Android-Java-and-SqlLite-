@@ -7,6 +7,9 @@
     <string name="list">List of Employees</string>
     <string name="search_hint">Search for an Employee…</string>
 
+    <!-- Details-->
+    <string name="DetailsTitle">Employee Details</string>
+    <string name="DetailsUpdate">Update</string>
     <!-- Add Activity-->
     <string name="AddTitle">Add employee</string>
     <string name="gallery_title">Gallery</string>

@@ -7,6 +7,10 @@
     <string name="list">قائمة الموظفين</string>
     <string name="search_hint">البحث عن موظف…</string>
 
+    <!-- Details-->
+    <string name="DetailsTitle">تفاصيل الموظف</string>
+    <string name="DetailsUpdate">تحديث</string>
+
     <!-- إضافة نشاط -->
     <string name="AddTitle">إضافة موظف</string>
     <string name="gallery_title">المعرض</string>
