@@ -152,40 +152,44 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getAllEmployeesFiltered(query);
         if (cursor != null) {
             listAdapter.changeCursor(cursor);
+            updateGridLayout(gridLayout, cursor); // Update the GridLayout as well
         }
     }
+
 
     @SuppressLint("Range")
     private void updateGridLayout(GridLayout gridLayout, Cursor cursor) {
         gridLayout.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
-        while (!cursor.isAfterLast()) {
-            View itemView = inflater.inflate(R.layout.grid_item_layout, gridLayout, false);
-            TextView nameTextView = itemView.findViewById(R.id.text_name);
-            TextView lastNameTextView = itemView.findViewById(R.id.text_lastname);
-            TextView jobTextView = itemView.findViewById(R.id.text_job);
+        if (cursor.moveToFirst()) { // Ensure the cursor is at the start
+            while (!cursor.isAfterLast()) {
+                View itemView = inflater.inflate(R.layout.grid_item_layout, gridLayout, false);
+                TextView nameTextView = itemView.findViewById(R.id.text_name);
+                TextView lastNameTextView = itemView.findViewById(R.id.text_lastname);
+                TextView jobTextView = itemView.findViewById(R.id.text_job);
 
-            nameTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME)));
-            lastNameTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME)));
-            jobTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_JOB)));
+                nameTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_FIRST_NAME)));
+                lastNameTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LAST_NAME)));
+                jobTextView.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_JOB)));
 
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = GridLayout.LayoutParams.WRAP_CONTENT;
-            params.height = GridLayout.LayoutParams.WRAP_CONTENT;
-            params.setMargins(8, 8, 8, 8);
-            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
-            itemView.setLayoutParams(params);
+                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                params.width = GridLayout.LayoutParams.WRAP_CONTENT;
+                params.height = GridLayout.LayoutParams.WRAP_CONTENT;
+                params.setMargins(8, 8, 8, 8);
+                params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
+                itemView.setLayoutParams(params);
 
-            final long employeeId = cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showEmployeeDetails(employeeId);
-                }
-            });
+                final long employeeId = cursor.getLong(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showEmployeeDetails(employeeId);
+                    }
+                });
 
-            gridLayout.addView(itemView);
-            cursor.moveToNext();
+                gridLayout.addView(itemView);
+                cursor.moveToNext();
+            }
         }
     }
 
