@@ -11,8 +11,4 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/textColor</item>
     </style>
-    <style name="NightTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorSecondary">@color/textColor</item>
-    </style>
 </resources>

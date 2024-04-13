@@ -4,4 +4,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/textColor</item>
     </style>
+    <style name="Theme.EmployeeManagementApp" parent="Base.Theme.EmployeeManagementApp" >
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/textColor</item>
+    </style>
 </resources>
