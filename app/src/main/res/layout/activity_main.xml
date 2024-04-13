@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:paddingTop="15dp"
             android:textColor="#FFFFFF"
-            android:text="List Of Employees"
+            android:text="@string/list"
             android:textSize="20dp"
             android:gravity="center_vertical"/>
 
@@ -67,7 +67,7 @@
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search for an employee..."
+        android:hint="@string/search_hint"
         android:id="@+id/search_input"
         android:visibility="visible"/>
 

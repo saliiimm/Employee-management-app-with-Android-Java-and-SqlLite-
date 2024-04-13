@@ -37,7 +37,7 @@
                 android:gravity="center_vertical"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                android:text="Add employee"
+                android:text="@string/AddTitle"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
@@ -68,7 +68,7 @@
                 android:id="@+id/button_choose_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="galery"
+                android:text="@string/gallery_title"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:onClick="openGallery"/>
@@ -76,7 +76,7 @@
                 android:id="@+id/button_choose_image2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="camera"
+                android:text="@string/camera_title"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:onClick="openCamera"/>
@@ -86,7 +86,7 @@
                 android:layout_marginTop="20sp"
                 android:layout_marginLeft="20sp"
                 android:textSize="17sp"
-                android:text="First Name:" />
+                android:text="@string/name_title" />
 
             <EditText
                 android:id="@+id/edittext_first_name"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:padding="15sp"
-                android:hint="Enter the first name"
+                android:hint="@string/first_name_hint"
                 android:background="@drawable/edittext_border" />
             <TextView
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                 android:layout_marginTop="20sp"
                 android:layout_marginLeft="20sp"
                 android:textSize="17sp"
-                android:text="Last Name:" />
+                android:text="@string/surname_title" />
 
             <EditText
                 android:id="@+id/edittext_last_name"
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:padding="15sp"
-                android:hint="Enter the last name"
+                android:hint="@string/last_name_hint"
                 android:background="@drawable/edittext_border" />
 
             <TextView
@@ -119,13 +119,13 @@
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"
-                android:text="Phone Number:" />
+                android:text="@string/phone_number" />
 
             <EditText
                 android:id="@+id/edittext_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter the phone number"
+                android:hint="@string/phone_hint"
                 android:layout_marginHorizontal="20sp"
                 android:padding="15sp"
                 android:inputType="phone"
@@ -137,13 +137,13 @@
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"
-                android:text="Email:" />
+                android:text="@string/email_title" />
 
             <EditText
                 android:id="@+id/edittext_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter the email"
+                android:hint="@string/mail_hint"
                 android:layout_marginHorizontal="20sp"
                 android:padding="15sp"
                 android:inputType="textEmailAddress"
@@ -155,7 +155,7 @@
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"
-                android:text="Job Title:" />
+                android:text="@string/job_title" />
 
             <EditText
                 android:id="@+id/edittext_job"
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:padding="15sp"
-                android:hint="Enter the job title"
+                android:hint="@string/job_hint"
                 android:background="@drawable/edittext_border" />
 
             <TextView
@@ -172,13 +172,13 @@
                 android:layout_marginLeft="20sp"
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"
-                android:text="Residence:" />
+                android:text="@string/residence_title" />
 
             <EditText
                 android:id="@+id/edittext_residence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter the residence"
+                android:hint="@string/residence_hint"
                 android:layout_marginHorizontal="20sp"
                 android:layout_marginBottom="120sp"
                 android:padding="15sp"

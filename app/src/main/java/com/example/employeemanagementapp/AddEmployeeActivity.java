@@ -1,18 +1,23 @@
 package com.example.employeemanagementapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Locale;
 
 public class AddEmployeeActivity extends AppCompatActivity {
 
@@ -24,6 +29,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyLanguage();
         setContentView(R.layout.activity_add_employee);
 
         editTextFirstName = findViewById(R.id.edittext_first_name);
@@ -121,4 +127,49 @@ public class AddEmployeeActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to add employee", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        super.onResume();
+        applyLanguage();
+        recreate();
+
+
+    }
+
+    private void applyLanguage() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String selectedLanguage = preferences.getString("selected_language", "");
+        Log.d("selected language",selectedLanguage);
+        Locale newLocale;
+        if (selectedLanguage.equals("العربية")) {
+            newLocale = new Locale("ar");
+            Locale.setDefault(newLocale);
+            Configuration config = new Configuration();
+            config.setLocale(newLocale);
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        } else {
+            newLocale = Locale.ENGLISH;
+            Locale.setDefault(newLocale);
+            Configuration config = new Configuration();
+            config.setLocale(newLocale);
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Handle configuration changes here, if needed
+        // This method will be called automatically when the language configuration is changed
+    }
+
+
+
 }

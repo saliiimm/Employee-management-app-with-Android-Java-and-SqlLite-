@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EmployeeManagementApp</string>
+    <string name="employee_image">Employee Image</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <!-- الصفحة الرئيسية -->
+    <string name="list">قائمة الموظفين</string>
+    <string name="search_hint">البحث عن موظف…</string>
+
+    <!-- إضافة نشاط -->
+    <string name="AddTitle">إضافة موظف</string>
+    <string name="gallery_title">المعرض</string>
+    <string name="camera_title">الكاميرا</string>
+    <string name="name_title">الاسم الأول</string>
+    <string name="surname_title">اسم العائلة</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="email_title">البريد الإلكتروني</string>
+    <string name="job_title">المسمى الوظيفي</string>
+    <string name="residence_title">السكن</string>
+
+    <string name="first_name_hint">أدخل الاسم الأول</string>
+    <string name="last_name_hint">أدخل اسم العائلة</string>
+    <string name="phone_hint">أدخل رقم الهاتف</string>
+    <string name="mail_hint">أدخل البريد الإلكتروني</string>
+    <string name="job_hint">أدخل المسمى الوظيفي</string>
+    <string name="residence_hint">أدخل السكن</string>
+
+    <!-- عناوين التفضيلات -->
+    <string name="params_header">الإعدادات</string>
+
+    <!-- تفضيلات الرسائل -->
+    <string name="language_title">اللغة</string>
+
+    <!-- تفضيلات المزامنة -->
+    <string name="theme_title">تغيير السمة</string>
+    <string name="theme_on">تشغيل الوضع الفاتح</string>
+    <string name="theme_off">تشغيل الوضع الداكن</string>
+</resources>

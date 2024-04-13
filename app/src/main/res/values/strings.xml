@@ -3,11 +3,32 @@
     <string name="employee_image">Employee Image</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <!-- Home-->
+    <string name="list">List of Employees</string>
+    <string name="search_hint">Search for an Employee…</string>
+
+    <!-- Add Activity-->
+    <string name="AddTitle">Add employee</string>
+    <string name="gallery_title">Gallery</string>
+    <string name="camera_title">Camera</string>
+    <string name="name_title">First Name</string>
+    <string name="surname_title">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email_title">Email</string>
+    <string name="job_title">Job title</string>
+    <string name="residence_title">Residence</string>
+
+    <string name="first_name_hint">Enter the first Name</string>
+    <string name="last_name_hint">Enter the last Name</string>
+    <string name="phone_hint">Enter the phone Number</string>
+    <string name="mail_hint">Enter the Email</string>
+    <string name="job_hint">Enter the Job title</string>
+    <string name="residence_hint">Enter the Residence</string>
     <!-- Preference Titles -->
     <string name="params_header">Settings</string>
 
     <!-- Messages Preferences -->
-    <string name="language_title">Langue</string>
+    <string name="language_title">Language</string>
 
     <!-- Sync Preferences -->
     <string name="theme_title">Change Theme</string>

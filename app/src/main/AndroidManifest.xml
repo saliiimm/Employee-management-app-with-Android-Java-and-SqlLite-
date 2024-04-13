@@ -24,9 +24,6 @@
             android:exported="false"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".Settings"
-            android:exported="false" />
-        <activity
             android:name=".EmployeeDetails"
             android:exported="false" >
             <intent-filter>
