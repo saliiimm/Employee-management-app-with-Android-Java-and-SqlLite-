@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:orientation="horizontal"
-        android:background="#4E89AF"
+        android:background="@color/colorPrimary"
         android:paddingLeft="10dp">
 
         <TextView
@@ -20,7 +20,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:paddingTop="15dp"
-            android:textColor="#FFFFFF"
+            android:textColor='@color/textColor'
             android:text="@string/list"
             android:textSize="20dp"
             android:gravity="center_vertical"/>

@@ -128,15 +128,6 @@ public class AddEmployeeActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        super.onResume();
-        applyLanguage();
-        recreate();
-
-
-    }
 
     private void applyLanguage() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);

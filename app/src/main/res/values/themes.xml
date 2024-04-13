@@ -2,8 +2,17 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.EmployeeManagementApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/textColor</item>
+        <item name="titleTextStyle">@color/colorPrimary</item>
     </style>
 
-    <style name="Theme.EmployeeManagementApp" parent="Base.Theme.EmployeeManagementApp" />
+    <style name="Theme.EmployeeManagementApp" parent="Base.Theme.EmployeeManagementApp" >
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/textColor</item>
+    </style>
+    <style name="NightTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/textColor</item>
+    </style>
 </resources>

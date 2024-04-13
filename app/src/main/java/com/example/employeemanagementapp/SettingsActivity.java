@@ -1,13 +1,20 @@
 package com.example.employeemanagementapp;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreferenceCompat;
 
 import java.util.Locale;
 
@@ -17,6 +24,9 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+
+
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -49,6 +59,19 @@ public class SettingsActivity extends AppCompatActivity {
                 updateLocale(listPreference.getValue());
             }
 
+            SwitchPreferenceCompat themeSwitch = findPreference("theme"); // Get the switch preference
+
+            assert themeSwitch != null;
+            themeSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                    boolean isLightMode = (boolean) newValue;
+                    Log.d( "theme: ", String.valueOf(isLightMode));
+                    updateTheme(isLightMode); // Update theme based on switch state
+                    return true;
+                }
+            });
+
 
         }
 
@@ -71,5 +94,17 @@ public class SettingsActivity extends AppCompatActivity {
                 requireActivity().recreate(); // Only recreate if locale has actually changed
             }// Refresh the activity to apply changes
         }
+
+        private void updateTheme(boolean isLightMode) {
+            int themeId;
+            if (isLightMode) {
+                themeId = R.style.Base_Theme_EmployeeManagementApp;
+            } else {
+                themeId = R.style.NightTheme;
+            }
+            requireActivity().getTheme().applyStyle(themeId, true);
+
+        }
+
     }
 }
