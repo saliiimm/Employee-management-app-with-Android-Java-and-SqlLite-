@@ -5,4 +5,5 @@
     <attr name="colorAccent" format="color" />
     <attr name="headingTextColor" format="color" />
     <attr name="descriptionTextColor" format="color" />
+    <attr name="colorBack" format="color"/>
 </resources>

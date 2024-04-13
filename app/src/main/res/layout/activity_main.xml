@@ -42,12 +42,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Menu Icon"
+                android:textColor='@color/textColor'
                 android:src="@drawable/ic_menu"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="Menu Icon"
+                android:textColor='@color/textColor'
                 android:src="@drawable/ic_list"
                 android:id="@+id/list"
                 android:visibility="gone" />
@@ -58,6 +60,7 @@
                 android:layout_marginEnd="10dp"
                 android:onClick="GoToSettings"
                 android:contentDescription="Menu Icon"
+                android:textColor='@color/textColor'
                 android:src="@drawable/settings"/>
 
         </LinearLayout>
@@ -75,6 +78,7 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/colorBack"
         android:layout_weight="1" />
     <GridLayout
         android:id="@+id/gridlayout"
@@ -82,6 +86,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:columnCount="2"
+        android:background="@color/colorBack"
         android:visibility="gone" />
 
     <LinearLayout
@@ -89,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/black"
+        android:background="@color/colorBack"
         android:padding="16dp"
         android:visibility="gone">
 

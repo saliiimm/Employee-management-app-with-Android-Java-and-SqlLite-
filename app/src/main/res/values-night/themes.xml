@@ -3,9 +3,11 @@
     <style name="NightTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/textColor</item>
+        <item name="colorBack">@color/colorBack</item>
     </style>
     <style name="Theme.EmployeeManagementApp" parent="Base.Theme.EmployeeManagementApp" >
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/textColor</item>
+        <item name="colorBack">@color/colorBack</item>
     </style>
 </resources>
