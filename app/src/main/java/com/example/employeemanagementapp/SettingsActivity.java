@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -98,11 +99,10 @@ public class SettingsActivity extends AppCompatActivity {
         private void updateTheme(boolean isLightMode) {
             int themeId;
             if (isLightMode) {
-                themeId = R.style.Base_Theme_EmployeeManagementApp;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             } else {
-                themeId = R.style.NightTheme;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
-            requireActivity().getTheme().applyStyle(themeId, true);
 
         }
 
